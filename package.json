@@ -1,0 +1,89 @@
+{
+  "name": "skripio-component-template",
+  "version": "1.0.1",
+  "description": "Template for creating new skripio component",
+  "scripts": {
+    "watch": "webpack --config webpack.config.js --watch",
+    "build": "webpack --config webpack.config.js",
+    "release-it": "standard-version -a",
+    "release-test": "standard-version -a --dry-run",
+    "doc": "documentation readme ./src/index.js -s=\"Reference\" --markdown-toc-max-depth=2 --shallow"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fmecgroup/skripio-component-template.git"
+  },
+  "keywords": [
+    "1c",
+    "skripio",
+    "fmec"
+  ],
+  "author": "Andrey Skripchenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fmecgroup/skripio-component-template/issues"
+  },
+  "homepage": "https://github.com/fmecgroup/skripio-component-template#readme",
+  "dependencies": {
+    "@skripio/response-emitter": "^1.0.0"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.2.0",
+    "css-minimizer-webpack-plugin": "^3.0.2",
+    "html-inline-css-webpack-plugin": "^1.11.1",
+    "html-inline-script-webpack-plugin": "^2.0.2",
+    "html-webpack-plugin": "^5.3.2",
+    "mini-css-extract-plugin": "^2.3.0",
+    "semistandard": "^16.0.1",
+    "standard-version": "^9.3.1",
+    "terser-webpack-plugin": "^5.2.4",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0"
+  },
+  "semistandard": {
+    "ignore": [
+      "./dist*"
+    ]
+  },
+  "standard-version": {
+    "scripts": {
+      "prerelease": "npm run build && npm run doc && git add ./dist/bundle.html && git add ./README.md"
+    },
+    "issueUrlFormat": "https://dev.azure.com/fmec/FMS/_workitems/edit/{{id}}",
+    "types": [
+      {
+        "type": "feat",
+        "section": "Features"
+      },
+      {
+        "type": "fix",
+        "section": "Bug Fixes"
+      },
+      {
+        "type": "chore",
+        "hidden": true
+      },
+      {
+        "type": "docs",
+        "section": "Documentation"
+      },
+      {
+        "type": "style",
+        "hidden": true
+      },
+      {
+        "type": "refactor",
+        "hidden": true
+      },
+      {
+        "type": "perf",
+        "hidden": true
+      },
+      {
+        "type": "test",
+        "hidden": true
+      }
+    ]
+  }
+}
