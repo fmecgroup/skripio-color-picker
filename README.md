@@ -9,7 +9,7 @@ The component implements [spectrum](https://seballot.github.io/spectrum/) colorp
 
 # Before you begin
 
-Please get familiar with [Skripio component basics](https://github.com/fmecgroup/skripio-intro/)
+Please get familiar with [skripio component basics](https://github.com/fmecgroup/skripio-intro/)
 
 # Quick start
 
