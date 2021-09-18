@@ -1,50 +1,44 @@
 'use strict';
 
+import './styles/spectrum.css';
 import './styles/custom.css';
+import './modules/jquery.js';
+import 'spectrum-colorpicker2';
 import ResponseEmitter from '@skripio/response-emitter';
 import SkripioComponent from './modules/skripio.component.js';
 
-const RESPONSE_DOM_ELEMENT_ID = '#response';
-const re = new ResponseEmitter(RESPONSE_DOM_ELEMENT_ID);
+window.ResponseEmitter = ResponseEmitter;
+const re = new ResponseEmitter('#init-response');
 
 /**
-* **Downloads assets required for component to function.**
-* @param {string}   args                      - Serialized method args object.
-* @param {*}        [args.callback = 'none']  - Any callback value.
-* @param {boolean}  [args.click = false]      - If truthy then click event will be emitted for sync results.
-* @returns {*} <br>
-* - `sync`  [Describe sync results here]. <br>
-* - `async` [Describe async results here].
-*/
-window.downloadAssets = function (args = '{}') {
-  try {
-    args = JSON.parse(args);
-  } catch (error) {
-    return re.emitResponse('none', ResponseEmitter.codes.DEV_ERROR, error.message);
-  }
-  const {
-    callback = 'none',
-    click = false
-  } = args;
-  /*
-  * Place here any code that will download any assets and libraries required for skripio component
-  * that are not packaged in component bundle.
-  * Amend argument object parameters set as required.
-  */
-  return re.emitResponse(callback, ResponseEmitter.codes.DONE, 'DONE', click);
-};
-
-/**
-* **Instantiates skripio component object.**
-* @param {string}   args                                         - Serialized method args object.
-* @param {string}   args.objectName                              - Skripio component object name.
-* @param {object}   [args.constructorArgs = {}]                  - Component constructor args object.
-* @param {string}   [args.responseElementSelector = '#response'] - DOM element selector that will receive async responses.
-* @param {*}        [args.callback = 'none']                     - Any callback value.
-* @param {boolean}  [args.click = false]                         - If truthy then click event will be emitted for sync results.
+* **Wrapper function that instantiates SkripioComponent object.**
+* @name window.initComponent
+* @param {string}   args                                                                    - Serialized method args object.
+* @param {string}   args.objectName                                                         - Skripio component object name.
+* @param {object}   [args.constructorArgs = ...]                                            - Component constructor args object.
+* @param {string}   [args.constructorArgs.pickerElementSelector = '#color-picker']          - Default DOM element selector where picker will be located.
+* @param {string}   [args.constructorArgs.responseElementSelector = '#component-response']  - Default DOM element selector where picker will emit responses.
+* @param {string}   [args.constructorArgs.spectrumEvent = 'move.spectrum']                  - Default Spectrum event name that will trigger color responses. For complete list of supported events see [Spectrum docs](https://seballot.github.io/spectrum/).
+* @param {string}   [args.constructorArgs.colorFormat = 'toHexString']                      - Default Function name that defines output color format. For complete list of supported formats see [Spectrum docs](https://seballot.github.io/spectrum/).
+* @param {*}        [args.constructorArgs.callback = 'component']                           - Default Callback returned by component at color response event.
+* @param {object}   [args.constructorArgs.spectrumOptions = ...]                            - Default Spectrum options. For complete list of options see [Spectrum docs](https://seballot.github.io/spectrum/).
+* @param {string}   [args.constructorArgs.spectrumOptions.type = 'flat']                    - Default spectrum option.
+* @param {boolean}  [args.constructorArgs.spectrumOptions.showInput = true]                 - Default spectrum option.
+* @param {boolean}  [args.constructorArgs.spectrumOptions.showAlpha = false]                - Default spectrum option.
+* @param {boolean}  [args.constructorArgs.spectrumOptions.allowEmpty = false]               - Default spectrum option.
+* @param {boolean}  [args.constructorArgs.spectrumOptions.showButtons = false]              - Default spectrum option.
+* @param {boolean}  [args.constructorArgs.spectrumOptions.showInitial = true]               - Default spectrum option.
+* @param {*}        [args.callback = 'init']                                                - Callback returned by init function.
+* @param {boolean}  [args.click = false]                                                    - If truthy then sync responses fill be accompanied with async ones.
 * @returns {string} <br>
-* - `sync`  If successful a serialized object that contains the instantiated **skripio** object name and **response DOM element selector** of a DOM element which will receive async responses from this object will be returned. <br>
-* - `async` None.
+* - `sync payload`  If successful an object that contains the instantiated **component** object name and **response DOM element selector** of a DOM element which will receive responses emitted from this object will be returned. <br>
+* - `async payload` None.
+* @example
+* // Component init response structure
+* {
+*  "name":"picker",
+*  "response":"#component-response"
+* }
 */
 window.initComponent = function (args = '{}') {
   try {
@@ -55,9 +49,22 @@ window.initComponent = function (args = '{}') {
 
   const {
     objectName,
-    constructorArgs = {},
-    responseElementSelector = RESPONSE_DOM_ELEMENT_ID,
-    callback = 'none',
+    constructorArgs = {
+      pickerElementSelector: '#color-picker',
+      responseElementSelector: '#component-response',
+      spectrumEvent: 'move.spectrum',
+      colorFormat: 'toHexString',
+      callback: 'component',
+      spectrumOptions: {
+        type: 'flat',
+        showInput: true,
+        showAlpha: false,
+        allowEmpty: false,
+        showButtons: false,
+        showInitial: true
+      }
+    },
+    callback = 'init',
     click = false
   } = args;
 
@@ -77,49 +84,6 @@ window.initComponent = function (args = '{}') {
 
   return re.emitResponse(callback, ResponseEmitter.codes.RESULT, {
     name: objectName,
-    response: responseElementSelector
+    response: constructorArgs.responseElementSelector
   }, click);
-};
-
-/**
-* **Executes skripio component methods.**
-* @param {string}   args                      - Serialized method args object.
-* @param {string}   args.object               - Skripio component object name.
-* @param {string}   args.method               - Skripio component method name.
-* @param {object}   [args.methodArgs = {}]    - Skripio component method arguments object.
-* @param {*}        [args.callback = 'none']  - Any callback value.
-* @param {boolean}  [args.click = false]      - If truthy then click event will be emitted for sync results.
-* @returns {*} <br>
-* - `sync`  See component method docs. <br>
-* - `async` See component method docs.
-*/
-window.execComponentMethod = function (args = '{}') {
-  try {
-    args = JSON.parse(args);
-  } catch (error) {
-    return re.emitResponse('none', ResponseEmitter.codes.DEV_ERROR, error.message);
-  }
-
-  const {
-    object,
-    method,
-    methodArgs = {},
-    callback = 'none',
-    click = false
-  } = args;
-
-  if (!object) {
-    return re.emitResponse(callback, ResponseEmitter.codes.DEV_ERROR, `'${object}' is not a valid object name.`, click);
-  }
-  if (!method) {
-    return re.emitResponse(callback, ResponseEmitter.codes.DEV_ERROR, `'${method}' is not a valid method name.`, click);
-  }
-  if (!(window[object] instanceof SkripioComponent)) {
-    return re.emitResponse(callback, ResponseEmitter.codes.DEV_ERROR, `'${object}' is not a valid skripio component.`, click);
-  }
-  if (!(typeof window[object][method] === 'function')) {
-    return re.emitResponse(callback, ResponseEmitter.codes.DEV_ERROR, `'${method}' is not a valid skripio component method.`, click);
-  }
-
-  return window[object][method](methodArgs);
 };

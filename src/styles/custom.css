@@ -8,6 +8,12 @@ body {
     align-items: center;
 }
 
-#response {
+#init-response,
+#component-response,
+#color-picker {
     display: none;
+}
+
+.picker {
+    box-shadow: none;
 }
