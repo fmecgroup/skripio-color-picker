@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/fmecgroup/skripio-component-template/compare/v1.0.0...v1.0.1) (2021-09-18)
+
+
+### Bug Fixes
+
+* Remove template text from changelog ([ba8b1de](https://github.com/fmecgroup/skripio-component-template/commit/ba8b1de35d61481a4a3c84151acf6bac96c27d84))
+
 ## 1.0.0 (2021-09-18)
 
 
