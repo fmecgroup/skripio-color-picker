@@ -19,7 +19,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Skripio [component name]',
+      title: 'Skripio color picker',
       template: './template.html',
       filename: 'bundle.html',
       inject: 'body',

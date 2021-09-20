@@ -1,17 +1,17 @@
 {
   "name": "skripio-color-picker",
   "version": "1.0.1",
-  "description": "Template for creating new skripio component",
+  "description": "Skripio color picker component",
   "scripts": {
     "watch": "webpack --config webpack.config.js --watch",
-    "build-it": "webpack --config webpack.config.js",
-    "release-it": "standard-version -a",
     "release-test": "standard-version -a --dry-run",
-    "document-it": "documentation readme ./src/index.js ./modules/skripio.component.js -s=\"Reference\" --markdown-toc-max-depth=2"
+    "build-it": "webpack --config webpack.config.js",
+    "document-it": "documentation readme ./src/index.js -s=\"Reference\" --markdown-toc-max-depth=3 --sort-order=alpha",
+    "release-it": "standard-version -a"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fmecgroup/skripio-component-template.git"
+    "url": "git+https://github.com/fmecgroup/skripio-color-picker"
   },
   "keywords": [
     "1c",
@@ -21,11 +21,11 @@
   "author": "Andrey Skripchenko",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fmecgroup/skripio-component-template/issues"
+    "url": "https://github.com/fmecgroup/skripio-color-picker/issues"
   },
-  "homepage": "https://github.com/fmecgroup/skripio-component-template#readme",
+  "homepage": "https://github.com/fmecgroup/skripio-color-picker#readme",
   "dependencies": {
-    "@skripio/response-emitter": "^1.0.1",
+    "@skripio/response-emitter": "^1.0.2",
     "jquery": "^3.6.0",
     "spectrum-colorpicker2": "^2.0.8"
   },
