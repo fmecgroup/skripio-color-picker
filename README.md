@@ -14,32 +14,22 @@ Please get familiar with [skripio component basics](https://github.com/fmecgroup
 # Quick start
 
 1.  Add component code to your project.
-2.  Call `window.initComponent` to instantiate component object.
+2.  Call `window.initComponentObject` to instantiate component object.
 
 In most of the cases you do not need to customize the component as it comes with default configuration sufficient for most scenarios.
-However if you need to customize it you can do that by passing **spectrum options** that best fits your demands at init stage.
+
+However, if you need to customize it you can do that by providing component `constructorArgs` object.
 
 # Examples
 
-Please see below examples of **args** object that can be passed to [window.initComponent](#windowinitcomponent) for different use cases.
-
-### Most **default** component:
-
-```JSON
-{
-    "objectName": "MyColorPicker"
-}
-```
+Please see below examples of `constructorArgs` object that configures color picker.
 
 ### Component with **initial color**:
 
 ```JSON
 {
-    "objectName": "MyColorPicker",
-    "constructorArgs": {
-        "spectrumOptions": {
-            "color": "blue"
-        }
+    "spectrumOptions": {
+        "color": "blue"
     }
 }
 ```
@@ -48,22 +38,19 @@ Please see below examples of **args** object that can be passed to [window.initC
 
 ```JSON
 {
-    "objectName": "MyColorPicker",
-    "constructorArgs": {
-        "colorFormat": "toRgbString",
-        "spectrumOptions": {
-            "color": "blanchedalmond",
-            "palette": [
-                ["#000","#444","#666","#999","#ccc","#eee","#f3f3f3","#fff"],
-                ["#f00","#f90","#ff0","#0f0","#0ff","#00f","#90f","#f0f"],
-                ["#f4cccc","#fce5cd","#fff2cc","#d9ead3","#d0e0e3","#cfe2f3","#d9d2e9","#ead1dc"],
-                ["#ea9999","#f9cb9c","#ffe599","#b6d7a8","#a2c4c9","#9fc5e8","#b4a7d6","#d5a6bd"],
-                ["#e06666","#f6b26b","#ffd966","#93c47d","#76a5af","#6fa8dc","#8e7cc3","#c27ba0"],
-                ["#c00","#e69138","#f1c232","#6aa84f","#45818e","#3d85c6","#674ea7","#a64d79"],
-                ["#900","#b45f06","#bf9000","#38761d","#134f5c","#0b5394","#351c75","#741b47"],
-                ["#600","#783f04","#7f6000","#274e13","#0c343d","#073763","#20124d","#4c1130"]
-            ]
-        }
+    "colorFormat": "toRgbString",
+    "spectrumOptions": {
+        "color": "blanchedalmond",
+        "palette": [
+            ["#000","#444","#666","#999","#ccc","#eee","#f3f3f3","#fff"],
+            ["#f00","#f90","#ff0","#0f0","#0ff","#00f","#90f","#f0f"],
+            ["#f4cccc","#fce5cd","#fff2cc","#d9ead3","#d0e0e3","#cfe2f3","#d9d2e9","#ead1dc"],
+            ["#ea9999","#f9cb9c","#ffe599","#b6d7a8","#a2c4c9","#9fc5e8","#b4a7d6","#d5a6bd"],
+            ["#e06666","#f6b26b","#ffd966","#93c47d","#76a5af","#6fa8dc","#8e7cc3","#c27ba0"],
+            ["#c00","#e69138","#f1c232","#6aa84f","#45818e","#3d85c6","#674ea7","#a64d79"],
+            ["#900","#b45f06","#bf9000","#38761d","#134f5c","#0b5394","#351c75","#741b47"],
+            ["#600","#783f04","#7f6000","#274e13","#0c343d","#073763","#20124d","#4c1130"]
+        ]
     }
 }
 ```
@@ -74,48 +61,23 @@ Please see below examples of **args** object that can be passed to [window.initC
 
 ### Table of Contents
 
-*   [window.initComponent](#windowinitcomponent)
+*   [initComponentObject](#initcomponentobject)
+    *   [Parameters](#parameters)
 *   [SkripioComponent](#skripiocomponent)
+    *   [Parameters](#parameters-1)
 
-## window.initComponent
+## initComponentObject
 
-**Wrapper function that instantiates SkripioComponent object.**
+**Instantiates skripio component object.**
 
 ### Parameters
 
-*   `args` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Serialized method args object.
-
-    *   `args.objectName` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Skripio component object name.
-    *   `args.constructorArgs` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Component constructor args object. (optional, default `...`)
-
-        *   `args.constructorArgs.pickerElementSelector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Default DOM element selector where picker will be located. (optional, default `'#color-picker'`)
-        *   `args.constructorArgs.responseElementSelector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Default DOM element selector where picker will emit responses. (optional, default `'#component-response'`)
-        *   `args.constructorArgs.spectrumEvent` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Default Spectrum event name that will trigger color responses. For complete list of supported events see [Spectrum docs](https://seballot.github.io/spectrum/). (optional, default `'move.spectrum'`)
-        *   `args.constructorArgs.colorFormat` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Default Function name that defines output color format. For complete list of supported formats see [Spectrum docs](https://seballot.github.io/spectrum/). (optional, default `'toHexString'`)
-        *   `args.constructorArgs.callback` **any** Default Callback returned by component at color response event. (optional, default `'component'`)
-        *   `args.constructorArgs.spectrumOptions` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Default Spectrum options. For complete list of options see [Spectrum docs](https://seballot.github.io/spectrum/). (optional, default `...`)
-
-            *   `args.constructorArgs.spectrumOptions.type` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Default spectrum option. (optional, default `'flat'`)
-            *   `args.constructorArgs.spectrumOptions.showInput` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Default spectrum option. (optional, default `true`)
-            *   `args.constructorArgs.spectrumOptions.showAlpha` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Default spectrum option. (optional, default `false`)
-            *   `args.constructorArgs.spectrumOptions.allowEmpty` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Default spectrum option. (optional, default `false`)
-            *   `args.constructorArgs.spectrumOptions.showButtons` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Default spectrum option. (optional, default `false`)
-            *   `args.constructorArgs.spectrumOptions.showInitial` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Default spectrum option. (optional, default `true`)
-    *   `args.callback` **any** Callback returned by init function. (optional, default `'init'`)
-    *   `args.click` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** If truthy then sync responses fill be accompanied with async ones. (optional, default `false`)
-
-### Examples
-
-```javascript
-// Component init response structure
-{
- "name":"picker",
- "response":"#component-response"
-}
-```
+*   `objectName` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Component name to instantiate.
+*   `constructorArgs` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Serialized component constructor arguments object. (optional, default `'{}'`)
+*   `callback` **any** 1C callback identifier of this wrapper function. (optional, default `'init'`)
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** <br>
-- `sync payload`  If successful an object that contains the instantiated **component** object name and **response DOM element selector** of a DOM element which will receive responses emitted from this object will be returned. <br>
+- `sync payload`  If successful a serialized object that contains instantiated **skripio component** object name and **DOM element id** which will receive async responses from this object will be returned. <br>
 - `async payload` None.
 
 ## SkripioComponent
@@ -126,12 +88,12 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 *   `constructorArgs` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Component constructor arguments object.
 
-    *   `constructorArgs.pickerElementSelector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** DOM element selector where picker will be located.
-    *   `constructorArgs.responseElementSelector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** DOM element selector where picker will emit responses.
-    *   `constructorArgs.spectrumEvent` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Spectrum event name that will trigger color responses. For complete list of supported events see [Spectrum docs](https://seballot.github.io/spectrum/).
-    *   `constructorArgs.colorFormat` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Function name that defines output color format. For complete list of supported formats see [Spectrum docs](https://seballot.github.io/spectrum/).
-    *   `constructorArgs.callback` **any** Callback returned by component at color response event.
-    *   `constructorArgs.spectrumOptions` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Spectrum options. For complete list of options see [Spectrum docs](https://seballot.github.io/spectrum/).
+    *   `constructorArgs.spectrumOptions` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Spectrum options. For complete list of options see [Spectrum docs](https://seballot.github.io/spectrum/). (optional, default `{}`)
+    *   `constructorArgs.pickerElementSelector` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** DOM element selector where picker will be located. (optional, default `'.picker'`)
+    *   `constructorArgs.colorFormat` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Function name that defines output color format. For complete list of supported formats see [Spectrum docs](https://seballot.github.io/spectrum/). (optional, default `'toHexString'`)
+    *   `constructorArgs.spectrumEvent` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Spectrum event name that will trigger color responses. For complete list of supported events see [Spectrum docs](https://seballot.github.io/spectrum/). (optional, default `'move.spectrum'`)
+    *   `constructorArgs.callback` **any** Callback returned by component at color response event. (optional, default `'component'`)
+    *   `constructorArgs.responseArgs` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** !Reserved! ResponseEmitter params.
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** <br>
 - `sync payload`  None <br>
