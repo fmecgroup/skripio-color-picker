@@ -8,12 +8,11 @@ body {
     align-items: center;
 }
 
-#init-response,
-#component-response,
-#color-picker {
+.response,
+.picker {
     display: none;
 }
 
-.picker {
+.picker-container {
     box-shadow: none;
 }

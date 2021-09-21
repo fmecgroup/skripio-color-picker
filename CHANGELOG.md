@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.2](https://github.com/fmecgroup/skripio-color-picker/compare/v1.0.1...v1.0.2) (2021-09-21)
+
+
+### Bug Fixes
+
+* Fix webpack config and package.json ([90ae3e7](https://github.com/fmecgroup/skripio-color-picker/commit/90ae3e711d135e13851d0164da599b2c282c2bd4)), closes [AB#1933](https://dev.azure.com/fmec/FMS/_workitems/edit/1933) [AB#1936](https://dev.azure.com/fmec/FMS/_workitems/edit/1936)
+
 ### [1.0.1](https://github.com/fmecgroup/skripio-component-template/compare/v1.0.0...v1.0.1) (2021-09-18)
 
 
