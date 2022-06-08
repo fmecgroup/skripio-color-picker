@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://kit.fontawesome.com/c6ba0863c9.js" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/json-formatter-js@2.3.4/dist/json-formatter.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/9.5.6/jsoneditor.min.js" integrity="sha512-E55fZmvWxbgtaLuphoqjaJ5rZX36f0yfq//rH6KMz8rIPd+Q5x7tU4xdRUxG1x+uTQ1zcXkvP1nVApFSJs5X2w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/9.5.6/jsoneditor.min.css" integrity="sha512-KUAYxdtovjDFrnJvy5/8xWbJUUf41CIwieVmjF2dFzqLZhrdZj6urqX/0/06J+cqs5BlaZQwwwEnaShUy7LHrw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Title -->
+    <title>Skripio testing suite</title>
+</head>
+
+<body class="container-fluid d-block bg-secondary">
+    <div class="row py-2 pe-2">
+        <div class="col-6">
+            <div class="accordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="map-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#map-collapse" aria-expanded="true" aria-controls="map-collapse">Map</button>
+                    </h2>
+                    <div id="map-collapse" class="accordion-collapse collapse show" aria-labelledby="map-header">
+                        <div role="progressbar" class="mdc-linear-progress mdc-linear-progress--indeterminate mdc-linear-progress--closed" aria-label="Example Progress Bar">
+                            <div class="mdc-linear-progress__buffer">
+                                <div class="mdc-linear-progress__buffer-bar"></div>
+                                <div class="mdc-linear-progress__buffer-dots"></div>
+                            </div>
+                            <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+                                <span class="mdc-linear-progress__bar-inner"></span>
+                            </div>
+                            <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+                                <span class="mdc-linear-progress__bar-inner"></span>
+                            </div>
+                        </div>
+                        <div class="accordion-body" id="map" style="height:500px"></div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="sync-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#sync-collapse" aria-expanded="false" aria-controls="sync-collapse">Sync log</button>
+                    </h2>
+                    <div id="sync-collapse" class="accordion-collapse collapse show" aria-labelledby="sync-header">
+                        <div class="accordion-body" id="sync"></div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="async-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#async-collapse" aria-expanded="false" aria-controls="async-collapse">Async log</button>
+                    </h2>
+                    <div id="async-collapse" class="accordion-collapse collapse show" aria-labelledby="async-header">
+                        <div class="accordion-body" id="async"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 p-2 bg-white rounded ">
+            <h5>Method</h5>
+            <div class="mb-3">
+                <select class="form-select bg-success text-white" aria-label="Select methods" id="globalMethodSelector">
+                </select>
+            </div>
+            <h5>Arguments</h5>
+            <div class="mb-3" id="methodArgs"></div>
+            <hr>
+            <div class="row mb-3 align-items-center">
+                <div class="col-auto">
+                    <button type="submit" id="run" class="btn btn-success">Run</button>
+                </div>
+                <div class="col-auto">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" value="" id="clear" checked>
+                        <label class="form-check-label" for="clear">Clear log</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <template id="log-item">
+        <div class="alert alert-dismissible fade show" role="alert">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <button type="button" class="btn btn-primary btn-sm" disabled data-skripio="copy">Copy</button>
+                </div>
+                <div class="col">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="raw" data-skripio="show-raw">
+                        <label class="form-check-label" for="raw"><strong>Raw</strong></label>
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <h6><span class="badge bg-dark text-white" data-skripio="timestamp"></span></h6>
+                </div>
+            </div>
+            <hr>
+            <textarea class="form-control form-control-sm d-none" data-skripio="raw-result"></textarea>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </template>
+
+    <template id="editor-element">
+        <div>
+            <label class="form-check-label" data-skripio="editor-label"></label>
+            <a href="#" class="link-primary" id="load">load</a>
+            <div class="mb-3" data-skripio="editor-container" style="height:350px"></div>
+        </div>
+    </template>
+
+    <template id="input-element">
+        <div class="mb-3">
+            <label></label>
+            <input type="text" class="form-control">
+        </div>
+    </template>
+
+    <template id="selector-element">
+        <div class="mb-3">
+            <label></label>
+            <select class="form-select " aria-label="Select Object Method">
+            </select>
+        </div>
+    </template>
+</body>
+
+</html>
