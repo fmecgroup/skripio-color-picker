@@ -11,38 +11,22 @@ const RESPONSE_CODES_COLORS = {
 
 const SKRIPIO_METHODS = [
   {
-    name: 'getAssets',
-    args: [
-      {
-        type: 'editor-element',
-        name: 'args',
-        default: {
-          mapProvider: 'google',
-          LoaderOptions: {
-            apiKey: process.env.MAP_API_KEY
-          }
-        }
-      },
-      {
-        type: 'input-element',
-        name: 'callback',
-        default: 'getAssets'
-      }
-    ]
-  },
-  {
     name: 'initObject',
     args: [
       {
         type: 'input-element',
         name: 'objectName',
-        default: 'fullScreenMap'
+        default: 'colorPicker'
       },
       {
         type: 'editor-element',
         name: 'args',
         default: {
-          mapProvider: 'google'
+          ConstructorOptions: {
+            spectrumOptions: {
+              color: 'blue'
+            }
+          }
         }
       },
       {

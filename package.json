@@ -3,7 +3,9 @@
   "version": "1.0.2",
   "description": "Skripio color picker component",
   "scripts": {
-    "watch": "webpack --config webpack.config.js --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch-test": "webpack --config ./test/webpack.config.js --watch",
+    "watch-prod": "webpack --config webpack.config.js --watch",
     "release-test": "standard-version -a --dry-run",
     "build-it": "webpack --config webpack.config.js",
     "document-it": "documentation readme ./src/index.js -s=\"Reference\" --markdown-toc-max-depth=3 --sort-order=alpha",
@@ -25,23 +27,24 @@
   },
   "homepage": "https://github.com/fmecgroup/skripio-color-picker#readme",
   "dependencies": {
-    "@skripio/response-emitter": "^1.0.2",
+    "@skripio/response-emitter": "^1.0.5",
     "jquery": "^3.6.0",
-    "spectrum-colorpicker2": "^2.0.8"
+    "spectrum-colorpicker2": "^2.0.9"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
-    "css-loader": "^6.2.0",
-    "css-minimizer-webpack-plugin": "^3.0.2",
+    "css-loader": "^6.7.1",
+    "css-minimizer-webpack-plugin": "^4.0.0",
+    "dotenv-webpack": "^7.1.0",
     "html-inline-css-webpack-plugin": "^1.11.1",
-    "html-inline-script-webpack-plugin": "^2.0.2",
-    "html-webpack-plugin": "^5.3.2",
-    "mini-css-extract-plugin": "^2.3.0",
+    "html-inline-script-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.0",
     "semistandard": "^16.0.1",
-    "standard-version": "^9.3.1",
-    "terser-webpack-plugin": "^5.2.4",
-    "webpack": "^5.52.1",
-    "webpack-cli": "^4.8.0"
+    "standard-version": "^9.5.0",
+    "terser-webpack-plugin": "^5.3.3",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.9.2"
   },
   "semistandard": {
     "ignore": [
