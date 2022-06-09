@@ -4,10 +4,10 @@
 import SkripioComponent from './component.js';
 
 /**
-* **Instantiates skripio component.**
+* **Instantiates SkripioComponent.**
 * @param {string} objectName                      - Component name to instantiate.
-* @param {string} initOptions                     - This method options.
-* @param {object} initOptions.componentOptions    - Options used to instantiate a component object. Refer to component object docs for details.
+* @param {string} initOptions                     - Method options.
+* @param {object} initOptions.componentOptions    - SkripioComponent options.
 * @param {*}      callback                        - 1C callback identifier of this wrapper function.
 * @returns {string} <br>
 * - `sync payload`  If successful the response object that contains instantiated **skripio component** object name and **DOM element id** which will receive async responses from this object will be returned. <br>

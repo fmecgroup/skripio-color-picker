@@ -2,9 +2,7 @@
 /* global skripio $ */
 
 /**
-* **skripio.ComponentOptions** interface. <br>
-* ComponentOptions object used to define properties that can be set on spectrum color picker.
-* @name ComponentOptions
+* SkripioComponent options.
 * @param {object}   componentOptions                          - Options used to instantiate a component object.
 * @param {object}   componentOptions.spectrumOptions          - Options used to instantiate spectrum object. For complete list of options see [Spectrum options](https://seballot.github.io/spectrum/#options).
 * @param {string}   componentOptions.colorFormat              - Function name that defines output color format. For complete list of supported output formats see [Spectrum color outputs](https://seballot.github.io/spectrum/#details-acceptedColorInputs).
