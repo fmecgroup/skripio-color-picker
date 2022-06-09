@@ -35,6 +35,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.0.0",
+    "documentation": "^13.2.5",
     "dotenv-webpack": "^7.1.0",
     "html-inline-css-webpack-plugin": "^1.11.1",
     "html-inline-script-webpack-plugin": "^3.0.0",
