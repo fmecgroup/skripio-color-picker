@@ -1,5 +1,5 @@
 {
-  "ConstructorOptions": {
+  "componentOptions": {
         "colorFormat": "toRgbString",
         "spectrumOptions": {
             "color": "blanchedalmond",

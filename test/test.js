@@ -1,12 +1,11 @@
 'use strict';
 /* global ClipboardJS skripio */
-import SkripioComponent from '../src/modules/component.js';
 
 const RESPONSE_CODES_COLORS = {
-  [skripio.lib.Emitter.codes.DEV_ERROR]: 'danger',
-  [skripio.lib.Emitter.codes.USER_ERROR]: 'warning',
-  [skripio.lib.Emitter.codes.RESULT]: 'success',
-  [skripio.lib.Emitter.codes.DONE]: 'secondary'
+  [skripio._lib.Emitter.codes.DEV_ERROR]: 'danger',
+  [skripio._lib.Emitter.codes.USER_ERROR]: 'warning',
+  [skripio._lib.Emitter.codes.RESULT]: 'success',
+  [skripio._lib.Emitter.codes.DONE]: 'secondary'
 };
 
 const SKRIPIO_METHODS = [
@@ -22,7 +21,7 @@ const SKRIPIO_METHODS = [
         type: 'editor-element',
         name: 'args',
         default: {
-          ConstructorOptions: {
+          componentOptions: {
             spectrumOptions: {
               color: 'blue'
             }
@@ -33,58 +32,6 @@ const SKRIPIO_METHODS = [
         type: 'input-element',
         name: 'callback',
         default: 'initObject'
-      }
-    ]
-  },
-  {
-    name: 'runObjectMethod',
-    args: [
-      {
-        type: 'selector-element',
-        name: 'object',
-        options: () => {
-          return Object.getOwnPropertyNames(skripio.objects);
-        }
-      },
-      {
-        type: 'selector-element',
-        name: 'method',
-        options: () => {
-          let methods = Object.getOwnPropertyNames(SkripioComponent.prototype);
-          methods = methods.filter((element) => {
-            if (element !== 'constructor' && element[0] !== '_') {
-              return true;
-            } else {
-              return false;
-            }
-          });
-          return methods;
-        }
-      },
-      {
-        type: 'editor-element',
-        name: 'methodArgs',
-        default: {}
-      },
-      {
-        type: 'input-element',
-        name: 'callback',
-        default: 'runObjectMethod'
-      }
-    ]
-  },
-  {
-    name: 'toggleProgress',
-    args: [
-      {
-        type: 'input-element',
-        name: 'status',
-        default: true
-      },
-      {
-        type: 'input-element',
-        name: 'callback',
-        default: 'toggleProgress'
       }
     ]
   }
@@ -282,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
   initClipboardJS();
   initSkripioMethodPicker();
   document.addEventListener('click', delegatedClickHandler);
-  document.querySelector('#init-response').addEventListener('click', asyncResponseHandler);
+  document.querySelector('#skripio-response').addEventListener('click', asyncResponseHandler);
   document.querySelector('#run').addEventListener('click', runMethodHandler);
   document.querySelector(IDS.methodSelector).addEventListener('change', selectMethodHandler);
 });

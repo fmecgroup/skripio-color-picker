@@ -18,7 +18,7 @@
   "keywords": [
     "1c",
     "skripio",
-    "fmec"
+    "component"
   ],
   "author": "Andrey Skripchenko",
   "license": "ISC",
@@ -55,7 +55,6 @@
     "scripts": {
       "prerelease": "npm run build-it && npm run document-it && git add ./dist/bundle.html && git add ./README.md"
     },
-    "issueUrlFormat": "https://dev.azure.com/fmec/FMS/_workitems/edit/{{id}}",
     "types": [
       {
         "type": "feat",

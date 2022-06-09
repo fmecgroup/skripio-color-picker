@@ -14,15 +14,15 @@ Please get familiar with [skripio component basics](https://github.com/fmecgroup
 # Quick start
 
 1.  Add component code to your project.
-2.  Call `window.initComponentObject` to instantiate component object.
+2.  Call `window.skripio.initObject` to instantiate component object.
 
 In most of the cases you do not need to customize the component as it comes with default configuration sufficient for most scenarios.
 
-However, if you need to customize it you can do that by providing component `constructorArgs` object.
+However, if you need to customize it you can do that by providing `componentOptions` object as part of `InitOptions` interface.
 
 # Examples
 
-Please see below examples of `constructorArgs` object that configures color picker.
+Please see below examples of `componentOptions` object that configures color picker.
 
 ### Component with **initial color**:
 

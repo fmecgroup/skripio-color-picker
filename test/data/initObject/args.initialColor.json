@@ -1,5 +1,5 @@
 {
-  "ConstructorOptions": {
+  "componentOptions": {
     "spectrumOptions": {
         "color": "blue"
     }

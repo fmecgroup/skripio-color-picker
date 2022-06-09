@@ -1,4 +1,4 @@
-// Standard error phrases.
+// Standard error phrases dictionary.
 'use strict';
 export default {
   BAD_ARGUMENT: 'Invalid method argument',
