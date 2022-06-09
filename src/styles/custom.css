@@ -16,3 +16,7 @@ body {
 .picker-container {
     box-shadow: none;
 }
+
+.sp-palette-container {
+    border-right: none;
+}
