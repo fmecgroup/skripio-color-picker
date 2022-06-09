@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/fmecgroup/skripio-color-picker/compare/v2.0.0...v2.0.1) (2022-06-09)
+
+
+### Documentation
+
+* Polish docs ([6caf463](https://github.com/fmecgroup/skripio-color-picker/commit/6caf4632b5a88033c340c4781a7c2d16e367469b)), closes [#11](https://github.com/fmecgroup/skripio-color-picker/issues/11)
+
 ## [2.0.0](https://github.com/fmecgroup/skripio-color-picker/compare/v1.0.2...v2.0.0) (2022-06-09)
 
 
